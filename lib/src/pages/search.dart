@@ -53,7 +53,7 @@ class _SearchState extends State<Search> {
         ),
         const Padding(
           padding: EdgeInsets.all(15.0),
-          child: Icon(Icons.location_pin),
+          child: Icon(Icons.location_pin)
         ),
       ],
     );
