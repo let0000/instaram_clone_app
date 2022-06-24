@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:instaram_clone/src/components/image_data.dart';
 import 'package:instaram_clone/src/controller/bottom_nav_controller.dart';
 import 'package:instaram_clone/src/pages/home.dart';
+import 'package:instaram_clone/src/pages/search.dart';
 
 class App extends GetView<BottomNavController> {
   const App({Key? key}) : super(key: key);
@@ -17,8 +18,8 @@ class App extends GetView<BottomNavController> {
               index: controller.pageIndex.value,
               children: [
                 const Home(),
-                Container(child: Center(child: Text('SEARCH')),),
-                Container(child: Center(child: Text('UPLOAD')),),
+                const Search(),
+               Container(child: Center(child: Text('UPLOAD')),),
                 Container(child: Center(child: Text('ACTIVITY')),),
                 Container(child: Center(child: Text('MYPAGE')),),
               ],
