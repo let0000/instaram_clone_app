@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.instaram_clone">
    <application
+        android:requestLegacyExternalStorage="true"
         android:label="instaram_clone"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
