@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054002644014",
+    "project_id": "instagram-clone-app-jignong",
+    "storage_bucket": "instagram-clone-app-jignong.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054002644014:android:75d20a191cea313521cbbf",
+        "android_client_info": {
+          "package_name": "com.example.instaram_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054002644014-oircgs6fmlcll2aa02sjl4hq6af849bn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg2pyzpsfuNQB7dyDTotfqQDNckasb9kE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054002644014-oircgs6fmlcll2aa02sjl4hq6af849bn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
