@@ -35,7 +35,7 @@ class Login extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: signInWithGoogle,
-          child: const Text('구글 로그인'),
+          child: const Text(' 구글 로그인 '),
         ),
       ),
     );
