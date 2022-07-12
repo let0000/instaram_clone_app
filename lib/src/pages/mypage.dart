@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:instaram_clone/src/components/avatar_widget.dart';
 import 'package:instaram_clone/src/components/image_data.dart';
 import 'package:instaram_clone/src/components/user_card.dart';
+import 'package:instaram_clone/src/controller/auth_controller.dart';
+import 'package:instaram_clone/src/controller/mypage_controller.dart';
 
-class MyPage extends StatefulWidget {
+class MyPage extends GetView<MyPageController> {
   const MyPage({Key? key}) : super(key: key);
-
-  @override
-  State<MyPage> createState() => _MyPageState();
-}
-
-class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
-  late TabController tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: 2, vsync: this);
-  }
 
   Widget _statisticsOne(String title, int value) {
     return Column(
@@ -37,46 +27,46 @@ class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
 
   Widget _information() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Obx(
+          () => Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AvatarWidget(
-                type: AvatarType.TYPE3,
-                thumbPath:
-                    'https://image.fmkorea.com/files/attach/new/20180505/559683442/554504864/1044137033/6ee9790736e46c2e0a5a1f0d54e7358d.jpg',
-                size: 80,
+              Row(
+                children: [
+                  AvatarWidget(
+                    type: AvatarType.TYPE3,
+                    thumbPath: controller.targetUser.value.thumbnail!,
+                    size: 80,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(child: _statisticsOne('post', 15)),
+                        Expanded(child: _statisticsOne('followers', 130)),
+                        Expanded(child: _statisticsOne('following', 100)),
+                      ],
+                    ),
+                  )
+                ],
               ),
               const SizedBox(
-                width: 10,
+                height: 10,
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(child: _statisticsOne('post', 15)),
-                    Expanded(child: _statisticsOne('followers', 130)),
-                    Expanded(child: _statisticsOne('following', 100)),
-                  ],
+               Text(
+                controller.targetUser.value.description!,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: Colors.black,
                 ),
               )
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            '나는야 직농이 ~~!!',
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.black,
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _menu() {
@@ -164,7 +154,7 @@ class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
 
   Widget _tabMenu() {
     return TabBar(
-        controller: tabController,
+        controller: controller.tabController,
         indicatorColor: Colors.black,
         indicatorWeight: 1,
         tabs: [
@@ -201,11 +191,11 @@ class _MyPageState extends State<MyPage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text('직농이',
-            style: TextStyle(
+        title: Obx(() => Text(controller.targetUser.value.nickname!,
+            style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Colors.black)),
+                color: Colors.black))),
         actions: [
           GestureDetector(
             onTap: () {},

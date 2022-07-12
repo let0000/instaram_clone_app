@@ -23,10 +23,24 @@ class IUser {
 
   Map<String, dynamic> toMap() {
     return {
-      'uid' : uid,
-      'nickname' : nickname,
-      'thumbnail' : thumbnail,
-      'description' : description,
+      'uid': uid,
+      'nickname': nickname,
+      'thumbnail': thumbnail,
+      'description': description,
     };
+  }
+
+  IUser copyWith({
+    String? uid,
+    String? nickname,
+    String? thumbnail,
+    String? description,
+  }) {
+    return IUser(
+      uid: uid ?? this.uid,
+      nickname: nickname ?? this.nickname,
+      thumbnail: thumbnail ?? this.thumbnail,
+      description: description ?? this.description,
+    );
   }
 }
