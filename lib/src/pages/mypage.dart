@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:instaram_clone/src/components/avatar_widget.dart';
 import 'package:instaram_clone/src/components/image_data.dart';
 import 'package:instaram_clone/src/components/user_card.dart';
-import 'package:instaram_clone/src/controller/auth_controller.dart';
 import 'package:instaram_clone/src/controller/mypage_controller.dart';
 
 class MyPage extends GetView<MyPageController> {
