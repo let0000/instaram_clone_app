@@ -57,7 +57,7 @@ class UploadDescription extends GetView<UploadController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Facebook', style: TextStyle(
+              const Text('Facebook ', style: TextStyle(
                 fontSize: 17,
               ),),
               Switch(value: false, onChanged: (bool value) {})
