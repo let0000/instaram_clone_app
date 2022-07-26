@@ -19,10 +19,11 @@ class UploadDescription extends GetView<UploadController> {
               fit: BoxFit.cover,
             ),
           ),
-          const Expanded(
+          Expanded(
               child: TextField(
+            controller: controller.textEditingController,
             maxLines: null,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
@@ -57,27 +58,36 @@ class UploadDescription extends GetView<UploadController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Facebook ', style: TextStyle(
-                fontSize: 17,
-              ),),
+              const Text(
+                'Facebook ',
+                style: TextStyle(
+                  fontSize: 17,
+                ),
+              ),
               Switch(value: false, onChanged: (bool value) {})
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Twitter', style: TextStyle(
-                fontSize: 17,
-              ),),
+              const Text(
+                'Twitter',
+                style: TextStyle(
+                  fontSize: 17,
+                ),
+              ),
               Switch(value: false, onChanged: (bool value) {})
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Tumblr', style: TextStyle(
-                fontSize: 17,
-              ),),
+              const Text(
+                'Tumblr',
+                style: TextStyle(
+                  fontSize: 17,
+                ),
+              ),
               Switch(value: false, onChanged: (bool value) {})
             ],
           ),
@@ -107,7 +117,7 @@ class UploadDescription extends GetView<UploadController> {
         ),
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: controller.uploadPost,
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: ImageData(
@@ -126,9 +136,7 @@ class UploadDescription extends GetView<UploadController> {
             top: 0,
             bottom: 0,
             child: GestureDetector(
-              onTap: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
+              onTap: controller.unfocusKeyBoard,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
