@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:instaram_clone/src/components/avatar_widget.dart';
 import 'package:instaram_clone/src/components/image_data.dart';
 import 'package:instaram_clone/src/components/post_widget.dart';
+import 'package:instaram_clone/src/controller/home_controller.dart';
 
-class Home extends StatelessWidget {
+class Home extends GetView<HomeController> {
   const Home({Key? key}) : super(key: key);
 
   Widget _myStory() {
@@ -53,9 +55,9 @@ class Home extends StatelessWidget {
   }
   
   Widget _postList() {
-    return Column(
-      children: List.generate(10, (index) => PostWidget()).toList(),
-    );
+    return Obx(() => Column(
+      children: List.generate(controller.postList.length, (index) => PostWidget(post: controller.postList[index])).toList(),
+    ));
   }
 
   @override

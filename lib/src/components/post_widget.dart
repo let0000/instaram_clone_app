@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:instaram_clone/src/components/avatar_widget.dart';
 import 'package:instaram_clone/src/components/image_data.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import '../models/post.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({Key? key}) : super(key: key);
+  final Post post;
+  const PostWidget({Key? key, required, required this.post}) : super(key: key);
 
   Widget _header() {
     return Padding(
@@ -15,10 +18,11 @@ class PostWidget extends StatelessWidget {
         children: [
           AvatarWidget(
               type: AvatarType.TYPE3,
-              nickname: '직농이',
+              nickname: post.userInfo!.nickname,
               size: 40,
               thumbPath:
-                  'https://i.pinimg.com/550x/ec/6e/71/ec6e71b8b63630f9e765e832ff89c5dc.jpg'),
+                  post.userInfo!.thumbnail!
+        ),
           GestureDetector(
             onTap: () {},
             child: Padding(
@@ -37,7 +41,8 @@ class PostWidget extends StatelessWidget {
   Widget _image() {
     return CachedNetworkImage(
         imageUrl:
-            'https://upload3.inven.co.kr/upload/2021/05/19/bbs/i15453975961.jpg');
+           post.thumbnail!
+    );
   }
 
   Widget _infoCount() {
@@ -79,13 +84,13 @@ class PostWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            '좋아요 150개',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Text(
+            '좋아요 ${post.likeCount ?? 0}개',
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           ExpandableText(
-            '콘텐츠 1입니다.\n콘텐츠 1입니다.\n콘텐츠 1입니다.\n콘텐츠 1입니다.',
-            prefixText: '직농이',
+            post.description ?? '',
+            prefixText: post.userInfo!.nickname,
             onPrefixTap: () {
               print('직농이 페이지 이동');
             },
@@ -108,7 +113,7 @@ class PostWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () {},
         child: const Text(
-          '댓글 10개 모두 보기',
+          '댓글 0개 모두 보기',
           style: TextStyle(color: Colors.grey, fontSize: 13),
         ),
       ),
@@ -116,9 +121,11 @@ class PostWidget extends StatelessWidget {
   }
   
   Widget _dateAgo() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Text('1일전', style: TextStyle(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Text(
+        timeago.format(post.createdAt!),
+        style: const TextStyle(
         color: Colors.grey,
         fontSize: 11
       ),),
